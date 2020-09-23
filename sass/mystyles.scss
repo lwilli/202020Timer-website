@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+// Bulma
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "../node_modules/bulma/sass/utilities/functions";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap');
+
+// Set your brand colors
+$dark-purple: #2F303A;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+
+// Update Bulma's global variables
+$family-primary: "Sen";
+$family-sans-serif: $family-primary;
+$grey-dark: $dark-purple;
+$grey-light: $beige-light;
+$primary: $dark-purple;
+
+$text: $white;
+$text-light: lighten($text, 10);
+$text-strong: darken($text, 5);
+
+// Update some of Bulma's component variables
+$background: $dark-purple;
+$background-color: $dark-purple;
+$body-background-color: $dark-purple;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+$footer-background-color: $background;
+
+
+// Import only what you need from Bulma
+// @import "../node_modules/bulma/sass/utilities/_all.sass";
+// @import "../node_modules/bulma/sass/base/_all.sass";
+// @import "../node_modules/bulma/sass/elements/button.sass";
+// @import "../node_modules/bulma/sass/elements/container.sass";
+// @import "../node_modules/bulma/sass/elements/title.sass";
+// @import "../node_modules/bulma/sass/form/_all.sass";
+// @import "../node_modules/bulma/sass/components/navbar.sass";
+// @import "../node_modules/bulma/sass/layout/hero.sass";
+// @import "../node_modules/bulma/sass/layout/section.sass";
+
+
+#nav-logo {
+    margin-left: 0.5rem;
+}
+
+// Remove hover changes on logo
+.navbar-logo-item {
+    background-color: unset !important;
+    color: unset !important;
+}
+
+.hero-head {
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .hero-head {
+        margin-top: 0;
+    }
+}
+
+.title {
+    padding-bottom: 1rem;
+}
+
+
+
+
+
+
+@import "../node_modules/bulma/bulma";
