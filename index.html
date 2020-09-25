@@ -8,15 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>202020 Timer</title>
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Bulma Version 0.9.x-->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/> -->
-    
-    <!-- TODO get a version of cyborg with updated bulma or figure out better styling system -->
-     <!-- Version 9 needed for features like margin spacers -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/cyborg/bulmaswatch.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/cyborg_bulmaswatch.min.css"> -->
     <link href="css/mystyles.css" rel="stylesheet">
 
     <script src="https://js.stripe.com/v3"></script>
@@ -44,7 +37,7 @@
                             <img src="images/app_screenshot_16x9.gif" alt="Image of 202020">
                         </figure>
                     </div>
-                    <div class="column is-6 has-text-left has-text-centered-mobile">
+                    <div class="column is-6 has-text-left has-text-centered-mobile" id="right-side-hero">
                         <h1 class="title is-2">
                           20-20-20 timer for Mac
                         </h1>
@@ -55,10 +48,13 @@
                         <div class="level">
                             <p class="has-text-centered level-left"> 
                                 <a class="button is-medium is-info" id="checkout-button-price_1HESvOBCTPOSX6LEvazQ9NEa">
-                                    Buy Now | $4.99
+                                    Buy Now $4.99
                                 </a>
-                                <div id="error-message"></div>
                             </p>
+                        </div>
+                        <div class="notification is-danger" id="error-message" style="display: none;">
+                            <button class="delete"></button>
+                            <p id="error-message-text"></p>
                         </div>
                     </div>
                 </div>
@@ -96,6 +92,18 @@
         </div>
     </section>
 
+
+    <section id="contact" class="section">
+        <div class="container is-centered has-text-centered">
+            <h2 class="title is-2 is-centered has-text-white">Contact Us</h2>
+            <div class="columns is-centered">
+                <div class="column">
+                    <p class="is-size-5 mb-3">Questions or comments? We'd be happy to hear from you!</p>
+                    <p class="px-6">Send us an email at <a class="has-text-white has-text-weight-semibold" href="mailto:202020timer@gmail.com">202020timer@gmail.com</a> and we'll get back to you right away.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer grey-dark pb-1">
         <div class="content has-text-centered">
             <p>Copyright &copy; 2020 Logan Williams</p>
@@ -105,32 +113,40 @@
 
     <script>
         (function() {
-        // var stripe = Stripe('pk_live_ZH4hqXO2nMoqZChBPxHqTNNE00JSiT3hbB');
-        var stripe = Stripe('pk_test_QQWrBWtoj0mgGUzT86mQP2wv00GpYNeqxz');
+        var stripe = Stripe('pk_live_ZH4hqXO2nMoqZChBPxHqTNNE00JSiT3hbB');
 
         var checkoutButton = document.getElementById('checkout-button-price_1HESvOBCTPOSX6LEvazQ9NEa');
         checkoutButton.addEventListener('click', function () {
             // When the customer clicks on the button, redirect
             // them to Checkout.
             stripe.redirectToCheckout({
-            lineItems: [{price: 'price_1HESvOBCTPOSX6LEvazQ9NEa', quantity: 1}],
-            mode: 'payment',
-            // Do not rely on the redirect to the successUrl for fulfilling
-            // purchases, customers may not always reach the success_url after
-            // a successful payment.
-            // Instead use one of the strategies described in
-            // https://stripe.com/docs/payments/checkout/fulfillment
-            successUrl: 'https://202020timer.com/success',
-            cancelUrl: 'https://202020timer.com/',
+                lineItems: [{price: 'price_1HESvOBCTPOSX6LEvazQ9NEa', quantity: 1}],
+                mode: 'payment',
+                // Do not rely on the redirect to the successUrl for fulfilling
+                // purchases, customers may not always reach the success_url after
+                // a successful payment.
+                // Instead use one of the strategies described in
+                // https://stripe.com/docs/payments/checkout/fulfillment
+                successUrl: 'https://202020timer.com/success',
+                cancelUrl: 'https://202020timer.com/',
             })
             .then(function (result) {
-            if (result.error) {
+            // if (result.error) {
                 // If `redirectToCheckout` fails due to a browser or network
                 // error, display the localized error message to your customer.
-                var displayError = document.getElementById('error-message');
-                displayError.textContent = result.error.message;
-            }
+                document.getElementById('error-message-text').textContent = result.error.message;
+                document.getElementById('error-message').style.display = "inherit";
+            // }
             });
+        });
+        })();
+    </script>
+
+    <script>
+        (function() {
+        var deleteButton = document.getElementsByClassName('delete')[0];
+        deleteButton.addEventListener('click', function () {
+            document.getElementById('error-message').style.display = "none";
         });
         })();
     </script>
