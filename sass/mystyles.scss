@@ -23,6 +23,9 @@ $text: $white;
 $text-light: lighten($text, 10);
 $text-strong: darken($text, 5);
 
+$link: $white;
+$link-hover: $cyan;
+
 // Update some of Bulma's component variables
 $background: $dark-purple;
 $background-color: $dark-purple;
@@ -70,8 +73,13 @@ $footer-background-color: $background;
     padding-bottom: 1rem;
 }
 
+.text-link {
+    font-weight: bold;
+}
 
-
+.optometrist-logo {
+    max-height: 80px
+}
 
 
 
