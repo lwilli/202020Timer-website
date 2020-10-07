@@ -4,13 +4,15 @@
   "description": "202020 Timer - Mac menu bar app",
   "main": "sass/mystyles.scss",
   "scripts": {
-    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
+    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss public/css/mystyles.css",
+    "css-minify": "postcss public/css/mystyles.css -o public/css/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },
   "author": "logan.williams",
   "devDependencies": {
     "bulma": "^0.9.0",
-    "node-sass": "^4.13.1"
+    "cssnano": "^4.1.10",
+    "node-sass": "^4.14.1"
   }
 }
