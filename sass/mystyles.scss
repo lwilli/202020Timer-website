@@ -36,18 +36,34 @@ $input-shadow: none;
 
 $footer-background-color: $background;
 
+$pre-padding: 0rem 0rem;
+$pre-code-font-size: 1em;
+$code-background: #201f26;
+$code: $text;
+
+$box-background-color: #201f26;
+$box-radius: 5px;
+$box-color: $text;
+$box-shadow: 0 7px 13px -5px rgba($black, 0.75);
 
 // Import only what you need from Bulma
 // @import "../node_modules/bulma/sass/utilities/_all.sass";
 // @import "../node_modules/bulma/sass/base/_all.sass";
-// @import "../node_modules/bulma/sass/elements/button.sass";
-// @import "../node_modules/bulma/sass/elements/container.sass";
-// @import "../node_modules/bulma/sass/elements/title.sass";
+// @import "../node_modules/bulma/sass/elements/_all.sass";
 // @import "../node_modules/bulma/sass/form/_all.sass";
 // @import "../node_modules/bulma/sass/components/navbar.sass";
+// @import "../node_modules/bulma/sass/components/level.sass";
+// @import "../node_modules/bulma/sass/components/media.sass";
+// @import "../node_modules/bulma/sass/components/menu.sass";
+// @import "../node_modules/bulma/sass/components/message.sass";
+// @import "../node_modules/bulma/sass/grid/_all.sass";
+// @import "../node_modules/bulma/sass/helpers/color.sass";
 // @import "../node_modules/bulma/sass/layout/hero.sass";
 // @import "../node_modules/bulma/sass/layout/section.sass";
+// @import "../node_modules/bulma/sass/layout/footer.sass"
+@import "../node_modules/bulma/bulma";
 
+// Non-variable overrides
 
 #nav-logo {
     margin-left: 0.5rem;
@@ -81,6 +97,7 @@ $footer-background-color: $background;
     max-height: 80px
 }
 
-
-
-@import "../node_modules/bulma/bulma";
+.content pre {
+    padding: 0 0;
+    background-color: black;
+}

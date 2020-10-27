@@ -3,3 +3,5 @@ Disallow: /success.html
 Disallow: /404.html
 Allow: /index.html
 Allow: /sitemap.xml
+Allow: /blog.html
+Allow: /blog/how-to-make-a-20-20-20-timer-script.html
