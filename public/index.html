@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet">
     <link href="css/mystyles.css" rel="stylesheet">
 
-    <script src="https://js.stripe.com/v3"></script>
+    <script type="text/javascript" src="https://payhip.com/payhip.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98350226-4"></script>
@@ -94,14 +94,10 @@
                         <br>
                         <div class="level">
                             <p class="has-text-centered level-left"> 
-                                <a class="button is-medium is-info" id="checkout-button-price_1HESvOBCTPOSX6LEvazQ9NEa">
+                                <a class="button is-medium is-info" id="buy-button-payhip">
                                     Buy Now $4.99
                                 </a>
                             </p>
-                        </div>
-                        <div class="notification is-danger" id="error-message" style="display: none;">
-                            <button class="delete"></button>
-                            <p id="error-message-text"></p>
                         </div>
                     </div>
                 </div>
@@ -194,44 +190,15 @@
 
     <script>
         (function() {
-        var stripe = Stripe('pk_live_ZH4hqXO2nMoqZChBPxHqTNNE00JSiT3hbB');
-
-        var checkoutButton = document.getElementById('checkout-button-price_1HESvOBCTPOSX6LEvazQ9NEa');
-        checkoutButton.addEventListener('click', function () {
-            
-            amplitude.getInstance().logEvent('checkout-button-clicked');
-
-            // When the customer clicks on the button, redirect
-            // them to Checkout.
-            stripe.redirectToCheckout({
-                lineItems: [{price: 'price_1HESvOBCTPOSX6LEvazQ9NEa', quantity: 1}],
-                mode: 'payment',
-                // Do not rely on the redirect to the successUrl for fulfilling
-                // purchases, customers may not always reach the success_url after
-                // a successful payment.
-                // Instead use one of the strategies described in
-                // https://stripe.com/docs/payments/checkout/fulfillment
-                successUrl: 'https://202020timer.com/success',
-                cancelUrl: 'https://202020timer.com/',
-            })
-            .then(function (result) {
-            // if (result.error) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, display the localized error message to your customer.
-                document.getElementById('error-message-text').textContent = result.error.message;
-                document.getElementById('error-message').style.display = "inherit";
-            // }
+            var buyButton = document.getElementById('buy-button-payhip');
+            buyButton.addEventListener('click', function () {
+                amplitude.getInstance().logEvent('checkout-button-clicked');
+                Payhip.Checkout.open({
+                    product: 'LDiZ',
+                    theme: 'none',
+                    method: 'overlay'
+                });
             });
-        });
-        })();
-    </script>
-
-    <script>
-        (function() {
-        var deleteButton = document.getElementsByClassName('delete')[0];
-        deleteButton.addEventListener('click', function () {
-            document.getElementById('error-message').style.display = "none";
-        });
         })();
     </script>
 </body>
